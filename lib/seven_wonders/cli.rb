@@ -2,6 +2,10 @@ require_relative 'seven_wonders'
 require_relative 'scraper'
 class CLI
 
+  def initialize
+    Scraper.get_page
+  end
+
   def call
     puts "The Seven Wonders of the Ancient World"
     list_names_with_numbers
@@ -14,7 +18,13 @@ class CLI
     input = nil
     while input != "exit"
       input = gets.strip
-      get_info_by_number(input.to_i)
+      if input == "list"
+        list_names_with_numbers
+      elsif  input == "exit"
+        return
+      else
+        get_info_by_number(input.to_i)
+      end
     end
   end
 
@@ -28,12 +38,12 @@ class CLI
   end
 
   def list_names_with_numbers
-    wonders_array.each.with_index do |wonder,index|
+    Wonder.all.each.with_index do |wonder,index|
       puts "#{index + 1}. #{wonder.name}"
     end
   end
 
   def get_info_by_number(i)
-    puts  wonders_array[i - 1].info
+    puts  Wonder.all[i - 1].info
   end
 end

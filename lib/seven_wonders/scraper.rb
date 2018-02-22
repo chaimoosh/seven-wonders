@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require_relative 'seven_wonders'
 
 class Scraper
 
@@ -15,7 +16,7 @@ class Scraper
       }
       wonders_array << wonders_hash
     end
-    wonders_array
+    Wonder.create_from_scraper(wonders_array)
   end
 
 

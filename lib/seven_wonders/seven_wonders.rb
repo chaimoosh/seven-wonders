@@ -23,11 +23,5 @@ class Wonder
     self.all[id-1]
   end
 
-  def find_by_name(name)
 
-  end
 end
-
-scrape = Scraper.get_page
-Wonder.create_from_scraper(scrape)
-Wonder.all
