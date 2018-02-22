@@ -1,9 +1,9 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require_relative 'seven_wonders'
+require_relative './seven_wonders'
 
-class Scraper
+class SevenWonders::Scraper
 
   def self.get_page
     html = Nokogiri::HTML(open('http://www.history.com/topics/ancient-history/sevens-wonders-of-the-ancient-world'))
@@ -16,7 +16,7 @@ class Scraper
       }
       wonders_array << wonders_hash
     end
-    Wonder.create_from_scraper(wonders_array)
+    SevenWonders::Wonder.create_from_scraper(wonders_array)
   end
 
 

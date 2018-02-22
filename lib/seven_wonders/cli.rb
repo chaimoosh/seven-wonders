@@ -1,9 +1,9 @@
 require_relative 'seven_wonders'
 require_relative 'scraper'
-class CLI
+class SevenWonders::CLI
 
   def initialize
-    Scraper.get_page
+    SevenWonders::Scraper.get_page
   end
 
   def call
@@ -33,17 +33,17 @@ class CLI
   end
 
   def wonders_array
-    wonders = Scraper.get_page
-    Wonder.create_from_scraper(wonders)
+    wonders = SevenWonders::Scraper.get_page
+    SevenWonders::Wonder.create_from_scraper(wonders)
   end
 
   def list_names_with_numbers
-    Wonder.all.each.with_index do |wonder,index|
+    SevenWonders::Wonder.all.each.with_index do |wonder,index|
       puts "#{index + 1}. #{wonder.name}"
     end
   end
 
   def get_info_by_number(i)
-    puts  Wonder.all[i - 1].info
+    puts  SevenWonders::Wonder.all[i - 1].info
   end
 end
